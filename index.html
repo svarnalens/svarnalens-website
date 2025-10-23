@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
     /* === BASE & TYPOGRAPHY === */
@@ -21,6 +21,12 @@
       --ivory: #F5F5F5;
       --warm-grey: #BFBFBF;
       --bronze: #A67C00;
+      /* NEW: Light theme colors for modal */
+      --modal-bg: #FFFFFF;
+      --modal-text-dark: #1A1A1A;
+      --modal-text-light: #555555;
+      --modal-border: #EAEAEA;
+      
       --color-background: var(--black-bg);
       --color-accent-gold: var(--gold);
       --color-text: var(--ivory);
@@ -83,7 +89,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* === NEW: Styles for Brand Name Logo === */
+    /* === Styles for Brand Name Logo === */
     #brand-name a {
       display: flex;
       align-items: center; /* Vertically centers text and icon */
@@ -103,10 +109,57 @@
       opacity: 1;
       transform: rotate(135deg); /* A nice spin on hover */
     }
+    
+    /* === NEW: VISION BUTTON === */
+    #vision-button {
+      /* Copied from #pricing-button */
+      top: 0;
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      cursor: pointer;
+      border: 1px solid rgba(245, 245, 245, 0.2);
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+      
+      /* New positioning: approx 7rem button width + 2.5rem margin + 1rem gap */
+      right: 10.5rem; 
+      margin: 2.0rem 0; /* Override .fixed-ui padding */
+    }
+
+    #vision-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--color-accent-gold);
+      color: var(--color-accent-gold);
+    }
     /* === END NEW STYLES === */
 
+    /* === PRICING BUTTON (Unchanged) === */
+    #pricing-button {
+      top: 0;
+      right: 0;
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      cursor: pointer;
+      border: 1px solid rgba(245, 245, 245, 0.2);
+      padding: 0.6rem 1.2rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+      margin: 2.0rem 2.5rem; /* Adjusted to align with padding of .fixed-ui */
+      transition: all 0.3s ease;
+    }
 
-    /* === NEW: 'HOW SAMPLES WORK' SECTION === */
+    #pricing-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--color-accent-gold);
+      color: var(--color-accent-gold);
+    }
+
+
+    /* === 'HOW SAMPLES WORK' SECTION === */
     .samples-section {
       background-color: #0D0D0D;
       /* Padding top clears the fixed header */
@@ -147,14 +200,14 @@
     }
 
     .samples-content {
-      background-color: #1A1A1A; /* CHANGED: Per your request */
+      background-color: #1A1A1A; 
       border-radius: 4px;
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.4s ease-out;
     }
 
-    /* NEW: Wrapper for content padding */
+    /* Wrapper for content padding */
     .samples-content-inner {
       padding: 1.5rem;
     }
@@ -165,12 +218,12 @@
       font-size: 1rem;
       line-height: 1.7;
       font-weight: 300;
-      padding: 0; /* REMOVED: Padding is now on .samples-content-inner */
+      padding: 0; 
       margin: 0;
-      margin-bottom: 1.5rem; /* NEW: Space between text and video */
+      margin-bottom: 1.5rem; 
     }
 
-    /* NEW: Styles for the responsive video player */
+    /* Styles for the responsive video player */
     .video-player-wrapper {
       width: 100%;
       max-width: 640px; /* Constrains video width */
@@ -186,19 +239,6 @@
       display: block;
       height: auto;
     }
-
-    /* === STYLES FOR INNER SAMPLE GALLERY === */
-    /* REMOVED .samples-subheading */
-    /* REMOVED .samples-image-grid */
-    /* REMOVED .sample-image-item */
-    /* REMOVED .sample-image-item:hover img */
-    /* REMOVED .sample-image-id */
-    /* REMOVED .sample-image-item:hover .sample-image-id */
-    /* REMOVED .copy-confirmation */
-    /* REMOVED .copy-confirmation.show */
-
-    /* === STYLES FOR SAMPLES-ONLY LIGHTBOX === */
-    /* REMOVED all styles for #samples-lightbox */
 
     /* === EDITORIAL IMAGE GALLERY === */
     .editorial-grid {
@@ -316,19 +356,18 @@
       padding: 0 1rem;
     }
     
-    /* NEW: Styles for ID in main lightbox */
+    /* Styles for ID in main lightbox */
     #lightbox-id-wrapper {
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid rgba(212, 175, 55, 0.3);
       padding: 0.5rem 1.5rem;
       border-radius: 4px;
       margin-top: 1rem;
-      /* Cursory changed to pointer to show it's clickable */
       cursor: pointer; 
       transition: background-color 0.3s ease;
     }
 
-    /* NEW: Hover state for clickable ID */
+    /* Hover state for clickable ID */
     #lightbox-id-wrapper:hover {
       background: rgba(212, 175, 55, 0.1);
     }
@@ -340,7 +379,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* NEW: Styles for "Copied!" confirmation */
+    /* Styles for "Copied!" confirmation */
     #lightbox-copy-confirm {
       color: var(--gold);
       font-family: var(--font-sans);
@@ -433,11 +472,338 @@
       letter-spacing: 1px;
       margin: 0 1.5rem;
     }
+    
+    /* === PRICING MODAL STYLES (Unchanged) === */
+    #pricing-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    #pricing-modal.fade-out {
+      animation: fadeOut 0.3s ease forwards;
+    }
+
+    .pricing-modal-content {
+      background: var(--modal-bg);
+      color: var(--modal-text-dark);
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      max-width: 1100px;
+      width: 100%;
+      padding: 2.5rem 3rem;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: scaleIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .pricing-modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      color: var(--warm-grey);
+      font-weight: 200;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pricing-modal-close:hover {
+      color: var(--modal-text-dark);
+      transform: rotate(90deg);
+    }
+
+    .pricing-modal-content h2 {
+      font-family: var(--font-serif);
+      font-weight: 600;
+      color: var(--modal-text-dark);
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .pricing-card {
+      background: #FAFAFA;
+      border: 1px solid var(--modal-border);
+      border-radius: 6px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+    }
+
+    /* Special "Custom Concept" card */
+    .pricing-card.premium {
+      background: var(--modal-bg);
+      border-color: var(--gold);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+    }
+
+    .pricing-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--bronze);
+      margin-bottom: 0.75rem;
+    }
+
+    .pricing-card .price {
+      font-family: var(--font-sans);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--modal-text-dark);
+      margin-bottom: 1rem;
+    }
+
+    .pricing-card .description {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--modal-text-light);
+      line-height: 1.6;
+    }
+
+    .comparison-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .comparison-table {
+      width: 100%;
+      min-width: 800px;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem;
+      text-align: center;
+      vertical-align: middle;
+      border-bottom: 1px solid var(--modal-border);
+    }
+
+    .comparison-table th {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--modal-text-light);
+      border-bottom-width: 2px;
+    }
+
+    .comparison-table td:first-child {
+      font-weight: 500;
+      color: var(--modal-text-dark);
+      text-align: left;
+    }
+
+    .comparison-table th:first-child {
+      text-align: left;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      color: var(--modal-text-dark);
+      font-size: 1.1rem;
+    }
+
+    .comparison-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table td {
+      font-size: 0.95rem;
+      color: var(--modal-text-light);
+    }
+    
+    .comparison-table .icon-check {
+      color: var(--bronze);
+      font-size: 1.2rem;
+    }
+    
+    .comparison-table .icon-cross {
+      color: var(--warm-grey);
+      font-size: 1rem;
+    }
+    
+    /* === NEW: PAYMENT QUOTE (inside pricing modal) === */
+    .payment-quote {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--bronze);
+      text-align: center;
+      margin-top: 2rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .payment-quote strong {
+      color: var(--modal-text-dark);
+      font-weight: 500;
+    }
+    /* === END NEW STYLES === */
+    
+    
+    /* === NEW: VISION MODAL STYLES === */
+    #vision-modal {
+      /* Copied from #pricing-modal */
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    #vision-modal.fade-out {
+      animation: fadeOut 0.3s ease forwards;
+    }
+    
+    .vision-modal-content {
+      /* Based on .pricing-modal-content but dark-themed */
+      background: var(--black-bg);
+      color: var(--color-text);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      max-width: 900px;
+      width: 100%;
+      padding: 2.5rem 3rem;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: scaleIn 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+    
+    /* Close button is reusable from .pricing-modal-close */
+    #vision-modal-close {
+      /* Inherits styles from .pricing-modal-close */
+      color: var(--warm-grey); /* Ensure it's visible on dark bg */
+    }
+    
+    #vision-modal-close:hover {
+      color: var(--gold); /* Gold hover for dark bg */
+    }
+    
+    .vision-modal-content h2 {
+      font-family: var(--font-serif);
+      font-weight: 500;
+      color: var(--gold); /* As requested */
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    
+    .vision-modal-body {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .vision-gif-wrapper {
+      flex-shrink: 0;
+      max-width: 400px; /* As requested */
+      width: 100%;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+    }
+    
+    .vision-gif-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    
+    .vision-text-wrapper p {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--color-subtle-text);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .vision-text-wrapper p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .highlight-gold {
+      color: var(--gold);
+      font-weight: 500;
+    }
+    /* === END NEW STYLES === */
+
 
     /* === RESPONSIVE DESIGN === */
+    @media (max-width: 992px) {
+      /* Responsive pricing modal grid */
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 800px) {
+      /* === NEW: Responsive Vision Modal Layout === */
+      .vision-modal-body {
+        flex-direction: column;
+      }
+      .vision-gif-wrapper {
+        max-width: 400px; /* Keep max-width */
+        margin-bottom: 1.5rem;
+      }
+      /* === END NEW STYLES === */
+    }
+    
     @media (max-width: 768px) {
       .fixed-ui {
         padding: 1.5rem;
+        font-size: 0.8rem;
+      }
+      
+      /* === NEW: Responsive Vision Button === */
+      #vision-button {
+        /* approx 5.5rem button width + 1.5rem margin + 0.5rem gap */
+        right: 7.5rem; 
+        padding: 0.5rem 1rem;
+        margin: 1.25rem 0;
+        font-size: 0.8rem;
+      }
+      /* === END NEW STYLES === */
+
+      /* Responsive Pricing Button */
+      #pricing-button {
+        padding: 0.5rem 1rem;
+        margin: 1.25rem 1.5rem;
         font-size: 0.8rem;
       }
 
@@ -445,17 +811,15 @@
         font-size: 1rem;
       }
       
-      /* === NEW: Responsive logo size === */
+      /* === Responsive logo size === */
       .logo-sparkle {
         width: 0.9em; /* Slightly larger relative to smaller text */
         height: 0.9em;
         gap: 0.3rem;
       }
-      /* === END NEW STYLES === */
 
-      /* NEW: Responsive 'Samples' section */
+      /* Responsive 'Samples' section */
       .samples-section {
-        /* Mobile padding top clears fixed header */
         padding: 6rem 1.5rem 1rem 1.5rem;
       }
 
@@ -468,29 +832,20 @@
         height: 8px;
       }
 
-      /* NEW: Responsive padding for inner content */
+      /* Responsive padding for inner content */
       .samples-content-inner {
         padding: 1.2rem;
       }
 
       .samples-content p {
         font-size: 0.9rem;
-        padding: 0; /* REMOVED: Padding is now on .samples-content-inner */
+        padding: 0; 
         line-height: 1.6;
-        margin-bottom: 1rem; /* NEW: Mobile spacing */
+        margin-bottom: 1rem; 
       }
-
-      /* NEW: Responsive inner gallery */
-      /* REMOVED .samples-image-grid responsive */
-      /* REMOVED .samples-subheading responsive */
-      /* REMOVED .sample-image-id responsive */
-
-      /* NEW: Responsive samples lightbox */
-      /* REMOVED all #samples-lightbox responsive styles */
 
       .editorial-grid {
         grid-template-columns: 1fr;
-        /* Adjusted padding: top is smaller, bottom matches old top */
         padding: 1.5rem 1rem 6rem 1rem;
         gap: 1rem;
       }
@@ -510,7 +865,7 @@
         max-width: 90%;
       }
       
-      /* NEW: Responsive ID in main lightbox */
+      /* Responsive ID in main lightbox */
       #lightbox-id-wrapper {
         padding: 0.4rem 1rem;
         margin-top: 0.75rem;
@@ -518,7 +873,7 @@
       #lightbox-id {
         font-size: 0.8rem;
       }
-      /* NEW: Responsive "Copied!" message */
+      /* Responsive "Copied!" message */
       #lightbox-copy-confirm {
         font-size: 0.8rem;
         margin-left: 0.5rem;
@@ -544,9 +899,100 @@
       .footer-links a {
         font-size: 1rem;
         margin: 0 1rem;
-        display: inline-block; /* Prevents awkward line breaks */
+        display: inline-block; 
         margin-bottom: 0.5rem;
       }
+      
+      /* === RESPONSIVE PRICING MODAL (Unchanged) === */
+      #pricing-modal {
+        padding: 1rem;
+        align-items: flex-end; 
+      }
+
+      .pricing-modal-content {
+        padding: 2rem 1.5rem;
+        max-height: 85vh;
+        animation: slideInUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+      
+      /* Mobile slide-in animation */
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      #pricing-modal.fade-out .pricing-modal-content {
+        animation: fadeOutDown 0.3s ease forwards;
+      }
+      
+      @keyframes fadeOutDown {
+        from {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+      }
+
+      .pricing-modal-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .pricing-card .price {
+        font-size: 1.75rem;
+      }
+      
+      .comparison-table-wrapper {
+        border: 1px solid var(--modal-border);
+        border-radius: 6px;
+      }
+      
+      /* === NEW: RESPONSIVE VISION MODAL === */
+      #vision-modal {
+        padding: 1rem;
+        align-items: flex-end; /* Aligns modal to bottom */
+      }
+    
+      .vision-modal-content {
+        padding: 2rem 1.5rem;
+        max-height: 85vh;
+        animation: slideInUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      }
+      
+      #vision-modal.fade-out .vision-modal-content {
+        animation: fadeOutDown 0.3s ease forwards;
+      }
+    
+      .vision-modal-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      
+      .vision-text-wrapper p {
+        font-size: 0.9rem;
+      }
+      /* === END NEW STYLES === */
+
+      /* === NEW: RESPONSIVE PAYMENT QUOTE === */
+      .payment-quote {
+        font-size: 0.85rem;
+        margin-top: 1.5rem;
+      }
+      /* === END NEW STYLES === */
     }
   </style>
 </head>
@@ -560,6 +1006,14 @@
       </svg>
     </a>
   </header>
+
+  <button id="vision-button" class="fixed-ui">
+    Our Vision
+  </button>
+  <button id="pricing-button" class="fixed-ui">
+    Pricing
+  </button>
+
 
   <section class="samples-section">
     <button class="samples-toggle" aria-expanded="false" aria-controls="samples-panel">
@@ -587,71 +1041,54 @@
     <div class="grid-item" data-id="#2510230001">
       <img src="Jewellery pictures/1.png" alt="Cinematic diamond ring on dark silk" data-quote="Elegance is not about being noticed, it's about being remembered." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230002">
       <img src="Jewellery pictures/2.png" alt="Gold bridal necklace with soft shadows" data-quote="Every jewel tells a story, let ours tell yours." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230003">
       <img src="Jewellery pictures/3.png" alt="Festive gold earrings with flower prop" data-quote="Beyond brilliance, capturing the soul of luxury." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230004">
       <img src="Jewellery pictures/4.png" alt="Editorial style diamond bracelet" data-quote="Where art meets adornment, in every exquisite detail." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230005">
       <img src="Jewellery pictures/5.png" alt="Luxury ring with cinematic lighting" data-quote="The subtle gleam, the enduring allure." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230006">
       <img src="Jewellery pictures/6.png" alt="Bridal diamond earrings on velvet" data-quote="Crafted in light, perfected by vision." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230007">
       <img src="Jewellery pictures/7.png" alt="Gold pendant with strong directional light" data-quote="Radiance captured, for a lifetime of admiration." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230008">
       <img src="Jewellery pictures/8.png" alt="Close-up of diamond earring on model" data-quote="The perfect frame for unforgettable brilliance." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230009">
       <img src="Jewellery pictures/9.png" alt="Vintage engagement ring on textured background" data-quote="Timeless elegance, beautifully preserved." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230010">
       <img src="Jewellery pictures/10.png" alt="Modern minimalist pendant on clean surface" data-quote="Simplicity, refined into spectacular form." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230011">
       <img src="Jewellery pictures/11.png" alt="Stacked diamond rings with soft focus" data-quote="Layers of light, an ode to luxury." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230012">
       <img src="Jewellery pictures/12.png" alt="Pearl necklace draped elegantly" data-quote="The quiet majesty of a classic." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230013">
       <img src="Jewellery pictures/13.png" alt="Statement sapphire ring with dramatic lighting" data-quote="Bold statements, immortalized in light." loading.lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230014">
       <img src="Jewellery pictures/14.png" alt="Delicate gold chain with a small charm" data-quote="Whispers of luxury, captured in detail." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230015">
       <img src="Jewellery pictures/15.png" alt="Elegant gold bangles stacked beautifully" data-quote="Tradition meets contemporary elegance." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230016">
       <img src="Jewellery pictures/16.png" alt="Sparkling diamond studs on marble" data-quote="Small details, infinite brilliance." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230017">
       <img src="Jewellery pictures/17.png" alt="Vintage gold brooch with intricate design" data-quote="Heritage crafted in gold." loading="lazy">
     </div>
-
     <div class="grid-item" data-id="#2510230018">
       <img src="Jewellery pictures/18.png" alt="Luxurious diamond tennis bracelet" data-quote="Grace that encircles you." loading="lazy">
     </div>
@@ -677,6 +1114,113 @@
     </div>
   </div>
 
+  <div id="pricing-modal">
+    <div class="pricing-modal-content">
+      <span id="pricing-modal-close" class="pricing-modal-close">&times;</span>
+      <h2>💎 Pricing Plans</h2>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Single Image</h3>
+          <div class="price">₹199</div>
+          <p class="description">One AI-generated jewellery visual based on your idea.</p>
+        </div>
+        <div class="pricing-card">
+          <h3>Bundle of 5</h3>
+          <div class="price">₹799</div>
+          <p class="description">Five visuals for your brand’s social media.</p>
+        </div>
+        <div class="pricing-card">
+          <h3>Bundle of 10</h3>
+          <div class="price">₹1,499</div>
+          <p class="description">Ten premium visuals for consistent content.</p>
+        </div>
+        <div class="pricing-card premium">
+          <h3>Custom Concept</h3>
+          <div class="price">₹1,999</div>
+          <p class="description">Five custom AI visuals with unique direction and brand styling.</p>
+        </div>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>🪄 Feature</th>
+              <th>Single Image</th>
+              <th>Bundle of 5</th>
+              <th>Bundle of 10</th>
+              <th>Custom Concept</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>No. of Images</td>
+              <td>1</td>
+              <td>5</td>
+              <td>10</td>
+              <td>5 Custom</td>
+            </tr>
+            <tr>
+              <td>Based on Your Idea</td>
+              <td class="icon-check">✅</td>
+              <td class="icon-check">✅</td>
+              <td class="icon-check">✅</td>
+              <td class="icon-check">✅</td>
+            </tr>
+            <tr>
+              <td>Priority Delivery</td>
+              <td class="icon-cross">❌</td>
+              <td class="icon-cross">❌</td>
+              <td class="icon-check">✅</td>
+              <td class="icon-check">✅</td>
+            </tr>
+            <tr>
+              <td>Custom Concept Direction</td>
+              <td class="icon-cross">❌</td>
+              <td class="icon-cross">❌</td>
+              <td class="icon-cross">❌</td>
+              <td class="icon-check">✅</td>
+            </tr>
+            <tr>
+              <td>Revisions</td>
+              <td class="icon-cross">❌</td>
+              <td>✅ (minor)</td>
+              <td>✅</td>
+              <td>✅ (with feedback)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="payment-quote">
+        Payments are processed via <strong>Instagram DM</strong> or <strong>email</strong>. After sending your chosen plan and idea, we’ll confirm and provide the visuals.
+      </p>
+      </div>
+  </div>
+
+  <div id="vision-modal">
+    <div class="vision-modal-content">
+      <span id="vision-modal-close" class="pricing-modal-close">&times;</span>
+      <h2>Our Vision</h2>
+      <div class="vision-modal-body">
+        <div class="vision-gif-wrapper">
+          <img src="https://mir-s3-cdn-cf.behance.net/project_modules/source/d75111164310935.63f4d3a003e4e.gif" alt="SvarnaLens AI Jewellery Visuals GIF">
+        </div>
+        <div class="vision-text-wrapper">
+          <p>
+            We blend artistry with technology, creating stunning <span class="highlight-gold">AI-crafted visuals</span> that capture the essence of luxury. Based in <span class="highlight-gold">Jammu</span>, we draw inspiration from rich <span class="highlight-gold">heritage</span> to produce editorial-quality content for <span class="highlight-gold">premium brands</span> worldwide.
+          </p>
+          <p>
+            <span class="highlight-gold">SvarnaLens</span> provides <span class="highlight-gold">custom, luxury jewellery visuals</span> that elevate your brand's presence. We empower businesses, from small artisans to large enterprises, with imagery that tells a story of elegance and sophistication.
+          </p>
+          <p>
+            Our mission is to make bespoke, high-end visual content accessible, enabling every brand to showcase their creations with the brilliance they deserve.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // --- Lightbox Logic (Existing) ---
@@ -685,11 +1229,11 @@
       const lightboxImage = document.getElementById('lightbox-image');
       const lightboxQuote = document.getElementById('lightbox-quote');
       const lightboxClose = document.getElementById('lightbox-close');
-      const lightboxIdWrapper = document.getElementById('lightbox-id-wrapper'); // NEW
-      const lightboxId = document.getElementById('lightbox-id'); // NEW
-      const lightboxCopyConfirm = document.getElementById('lightbox-copy-confirm'); // NEW
+      const lightboxIdWrapper = document.getElementById('lightbox-id-wrapper'); 
+      const lightboxId = document.getElementById('lightbox-id'); 
+      const lightboxCopyConfirm = document.getElementById('lightbox-copy-confirm'); 
 
-      // NEW: Clipboard fallback function
+      // Clipboard fallback function
       function copyToClipboard(text) {
         try {
           if (navigator.clipboard) {
@@ -704,7 +1248,7 @@
         }
       }
 
-      // NEW: Fallback copy function
+      // Fallback copy function
       function fallbackCopy(text) {
         const textArea = document.createElement('textarea');
         textArea.value = text;
@@ -731,12 +1275,12 @@
             const imgSrc = imgElement.src;
             const imgAlt = imgElement.alt;
             const imgQuote = imgElement.getAttribute('data-quote');
-            const imgId = item.getAttribute('data-id'); // NEW: Get ID from grid item
+            const imgId = item.getAttribute('data-id'); 
             
             lightboxImage.src = imgSrc;
             lightboxImage.alt = imgAlt;
             lightboxQuote.textContent = imgQuote;
-            lightboxId.textContent = imgId; // NEW: Set the ID text
+            lightboxId.textContent = imgId; 
             lightbox.style.display = 'flex';
             lightbox.classList.remove('fade-out');
           }
@@ -750,8 +1294,7 @@
           lightbox.style.display = 'none';
           lightboxImage.src = '';
           lightboxQuote.textContent = '';
-          lightboxId.textContent = ''; // NEW: Clear the ID text
-          // NEW: Hide copy confirmation on close
+          lightboxId.textContent = ''; 
           lightboxCopyConfirm.style.opacity = '0';
           lightboxCopyConfirm.style.visibility = 'hidden';
           lightbox.classList.remove('fade-out');
@@ -761,13 +1304,12 @@
       lightboxClose.addEventListener('click', closeLightbox);
 
       lightbox.addEventListener('click', (e) => {
-        // NEW: Check that the click is on the background and not the ID wrapper
         if (e.target === lightbox) {
           closeLightbox();
         }
       });
 
-      // NEW: Add click listener to the ID wrapper in the lightbox
+      // Add click listener to the ID wrapper in the lightbox
       lightboxIdWrapper.addEventListener('click', (e) => {
         e.stopPropagation(); // Prevents the lightbox from closing
         const idToCopy = lightboxId.textContent;
@@ -792,36 +1334,101 @@
           toggleButton.setAttribute('aria-expanded', !isExpanded);
 
           if (!isExpanded) {
-            // Open the panel
-            // scrollHeight includes the content's padding, giving us the exact height
             samplesPanel.style.maxHeight = samplesPanel.scrollHeight + 'px';
           } else {
-            // Close the panel
             samplesPanel.style.maxHeight = null;
           }
         });
       }
 
-      // --- REMOVED SAMPLES GALLERY LIGHTBOX & CLIPBOARD LOGIC ---
+      // --- PRICING MODAL LOGIC (Existing) ---
+      const pricingButton = document.getElementById('pricing-button');
+      const pricingModal = document.getElementById('pricing-modal');
+      const pricingModalClose = document.getElementById('pricing-modal-close');
+
+      const closePricingModal = () => {
+        pricingModal.classList.add('fade-out');
+        setTimeout(() => {
+          pricingModal.style.display = 'none';
+          pricingModal.classList.remove('fade-out');
+        }, 300); // Must match CSS animation duration
+      };
+
+      if (pricingButton && pricingModal && pricingModalClose) {
+        // Open modal
+        pricingButton.addEventListener('click', () => {
+          pricingModal.style.display = 'flex';
+          pricingModal.classList.remove('fade-out');
+        });
+
+        // Close via '×' button
+        pricingModalClose.addEventListener('click', closePricingModal);
+
+        // Close by clicking background
+        pricingModal.addEventListener('click', (e) => {
+          if (e.target === pricingModal) {
+            closePricingModal();
+          }
+        });
+      }
       
-      // Add Escape key listener for the main lightbox
+      // --- NEW: VISION MODAL LOGIC ---
+      const visionButton = document.getElementById('vision-button');
+      const visionModal = document.getElementById('vision-modal');
+      const visionModalClose = document.getElementById('vision-modal-close');
+
+      const closeVisionModal = () => {
+        visionModal.classList.add('fade-out');
+        setTimeout(() => {
+          visionModal.style.display = 'none';
+          visionModal.classList.remove('fade-out');
+        }, 300);
+      };
+
+      if (visionButton && visionModal && visionModalClose) {
+        // Open modal
+        visionButton.addEventListener('click', () => {
+          visionModal.style.display = 'flex';
+          visionModal.classList.remove('fade-out');
+        });
+
+        // Close via '×' button
+        visionModalClose.addEventListener('click', closeVisionModal);
+
+        // Close by clicking background
+        visionModal.addEventListener('click', (e) => {
+          if (e.target === visionModal) {
+            closeVisionModal();
+          }
+        });
+      }
+      // --- END NEW SCRIPT ---
+
+      // --- UPDATED Escape key listener ---
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
+          // Close main lightbox
           if (lightbox.style.display === 'flex') {
             closeLightbox();
           }
-          // REMOVED check for samplesLightbox
+          // Close pricing modal
+          if (pricingModal && pricingModal.style.display === 'flex') {
+            closePricingModal();
+          }
+          // NEW: Close vision modal
+          if (visionModal && visionModal.style.display === 'flex') {
+            closeVisionModal();
+          }
         }
       });
       
-      // --- NEW: Disable Right-Click on All Images ---
+      // --- Disable Right-Click on All Images (Existing) ---
       const allImages = document.querySelectorAll('img');
       allImages.forEach(image => {
         image.addEventListener('contextmenu', (e) => {
           e.preventDefault(); // This prevents the default right-click menu
         });
       });
-      // --- END NEW SCRIPT ---
 
     });
   </script>

@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SvarnaLens | Editorial Jewellery Photography</title>
+  <meta name="description" content="SvarnaLens: Ultra-minimal, AI-powered jewellery photography with a Vogue-level editorial style.">
+  
+  <!-- Fonts: Playfair Display (Elegant Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  
+  <!-- Fonts: Inter (Clean Sans-serif) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  
+  <style>
+    /* === BASE & TYPOGRAPHY === */
+    :root {
+      /* Luxe Black & Gold Color Palette */
+      --black-bg: #0A0A0A;
+      --gold: #D4AF37;
+      --ivory: #F5F5F5;
+      --warm-grey: #BFBFBF;
+      --bronze: #A67C00;
+      --color-background: var(--black-bg);
+      --color-accent-gold: var(--gold);
+      --color-text: var(--ivory);
+      --color-secondary-accent: var(--bronze);
+      --color-subtle-text: var(--warm-grey);
+      --font-serif: "Playfair Display", Didot, serif;
+      --font-sans: "Inter", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: var(--color-background);
+      color: var(--color-text);
+      font-family: var(--font-serif);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: var(--color-text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--color-accent-gold);
+      text-shadow: 0 0 10px var(--gold);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* === FIXED UI ELEMENTS === */
+    .fixed-ui {
+      position: fixed;
+      z-index: 100;
+      padding: 2.5rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: all 0.4s ease;
+    }
+
+    #brand-name {
+      top: 0;
+      left: 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+    }
+
+    /* === NEW: 'HOW SAMPLES WORK' SECTION === */
+    .samples-section {
+      background-color: #0D0D0D;
+      /* Padding top clears the fixed header */
+      padding: 8rem 2.5rem 1.5rem 2.5rem; 
+    }
+
+    .samples-toggle {
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      color: var(--color-accent-gold);
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 0.5rem 0 1.2rem 0;
+      text-align: left;
+    }
+
+    .toggle-icon {
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid var(--color-accent-gold);
+      border-bottom: 2px solid var(--color-accent-gold);
+      transform: rotate(45deg); /* Down arrow */
+      transition: transform 0.3s ease-out;
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+
+    /* Arrow points up when expanded */
+    .samples-toggle[aria-expanded="true"] .toggle-icon {
+      transform: rotate(-135deg); /* Up arrow */
+    }
+
+    .samples-content {
+      background-color: #1A1A1A; /* CHANGED: Per your request */
+      border-radius: 4px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+
+    /* NEW: Wrapper for content padding */
+    .samples-content-inner {
+      padding: 1.5rem;
+    }
+
+    .samples-content p {
+      color: var(--ivory);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.7;
+      font-weight: 300;
+      padding: 0; /* REMOVED: Padding is now on .samples-content-inner */
+      margin: 0;
+      margin-bottom: 1.5rem; /* NEW: Space between text and video */
+    }
+
+    /* NEW: Styles for the responsive video player */
+    .video-player-wrapper {
+      width: 100%;
+      max-width: 640px; /* Constrains video width */
+      margin: 0 auto;
+      background-color: #000;
+      border-radius: 4px;
+      overflow: hidden; /* Clips video to border-radius */
+      border: 1px solid rgba(212, 175, 55, 0.1); /* Subtle gold border */
+    }
+
+    .video-player-wrapper video {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    /* === STYLES FOR INNER SAMPLE GALLERY === */
+    /* REMOVED .samples-subheading */
+    /* REMOVED .samples-image-grid */
+    /* REMOVED .sample-image-item */
+    /* REMOVED .sample-image-item:hover img */
+    /* REMOVED .sample-image-id */
+    /* REMOVED .sample-image-item:hover .sample-image-id */
+    /* REMOVED .copy-confirmation */
+    /* REMOVED .copy-confirmation.show */
+
+    /* === STYLES FOR SAMPLES-ONLY LIGHTBOX === */
+    /* REMOVED all styles for #samples-lightbox */
+
+    /* === EDITORIAL IMAGE GALLERY === */
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      /* Adjusted padding: top is smaller, bottom matches old top */
+      padding: 2rem 1.5rem 8rem 1.5rem; 
+      gap: 1.5rem;
+    }
+
+    .grid-item {
+      position: relative;
+      padding-top: 125%;
+      height: 0;
+      overflow: hidden;
+      cursor: pointer;
+      background-color: rgba(191, 191, 191, 0.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      transition: box-shadow 0.4s ease, transform 0.4s ease;
+      border: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    .grid-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.4s ease;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .grid-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.9) saturate(1.1);
+    }
+
+    /* === LIGHTBOX === */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.98) 0%, rgba(20, 20, 20, 0.98) 100%);
+      backdrop-filter: blur(10px);
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+      animation: fadeIn 0.4s ease;
+      flex-direction: column;
+      padding: 2rem;
+    }
+
+    .lightbox.fade-out {
+      animation: fadeOut 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    .lightbox img {
+      max-width: 85%;
+      max-height: 70vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3), 0 0 80px rgba(212, 175, 55, 0.1);
+      margin-bottom: 2rem;
+      cursor: default;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      animation: scaleIn 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    @keyframes scaleIn {
+      from { 
+        opacity: 0; 
+        transform: scale(0.9);
+      }
+      to { 
+        opacity: 1; 
+        transform: scale(1);
+      }
+    }
+
+    .lightbox-quote {
+      color: var(--gold);
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-style: italic;
+      text-align: center;
+      max-width: 700px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeInText 0.8s ease 0.4s forwards;
+      cursor: default;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+      padding: 0 1rem;
+    }
+    
+    /* NEW: Styles for ID in main lightbox */
+    #lightbox-id-wrapper {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      padding: 0.5rem 1.5rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      /* Cursory changed to pointer to show it's clickable */
+      cursor: pointer; 
+      transition: background-color 0.3s ease;
+    }
+
+    /* NEW: Hover state for clickable ID */
+    #lightbox-id-wrapper:hover {
+      background: rgba(212, 175, 55, 0.1);
+    }
+    
+    #lightbox-id {
+      color: var(--ivory);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    /* NEW: Styles for "Copied!" confirmation */
+    #lightbox-copy-confirm {
+      color: var(--gold);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-left: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .lightbox-quote::before {
+      content: '"';
+      font-size: 2.5rem;
+      color: var(--bronze);
+      opacity: 0.5;
+      position: relative;
+      top: 10px;
+      margin-right: 5px;
+    }
+
+    .lightbox-quote::after {
+      content: '"';
+      font-size: 2.5rem;
+      color: var(--bronze);
+      opacity: 0.5;
+      position: relative;
+      top: 10px;
+      margin-left: 5px;
+    }
+
+    @keyframes fadeInText {
+      from { 
+        opacity: 0; 
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0);
+      }
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 2.5rem;
+      color: var(--color-subtle-text);
+      font-weight: 200;
+      cursor: pointer;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+      color: var(--color-accent-gold);
+      transform: rotate(90deg);
+    }
+
+    /* === PREMIUM FOOTER SECTION === */
+    .contact-footer {
+      padding: 6rem 2rem 8rem 2rem;
+      text-align: center;
+      background-color: var(--color-background);
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .contact-footer h2 {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: var(--color-accent-gold);
+      margin-bottom: 1rem;
+    }
+
+    .contact-footer p {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--color-subtle-text);
+      max-width: 500px;
+      margin: 0 auto 2.5rem auto;
+      line-height: 1.6;
+    }
+
+    .footer-links a {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      font-size: 1.1rem;
+      color: var(--color-text);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0 1.5rem;
+    }
+
+    /* === RESPONSIVE DESIGN === */
+    @media (max-width: 768px) {
+      .fixed-ui {
+        padding: 1.5rem;
+        font-size: 0.8rem;
+      }
+
+      #brand-name {
+        font-size: 1rem;
+      }
+
+      /* NEW: Responsive 'Samples' section */
+      .samples-section {
+        /* Mobile padding top clears fixed header */
+        padding: 6rem 1.5rem 1rem 1.5rem;
+      }
+
+      .samples-toggle {
+        font-size: 1.25rem;
+      }
+
+      .toggle-icon {
+        width: 8px;
+        height: 8px;
+      }
+
+      /* NEW: Responsive padding for inner content */
+      .samples-content-inner {
+        padding: 1.2rem;
+      }
+
+      .samples-content p {
+        font-size: 0.9rem;
+        padding: 0; /* REMOVED: Padding is now on .samples-content-inner */
+        line-height: 1.6;
+        margin-bottom: 1rem; /* NEW: Mobile spacing */
+      }
+
+      /* NEW: Responsive inner gallery */
+      /* REMOVED .samples-image-grid responsive */
+      /* REMOVED .samples-subheading responsive */
+      /* REMOVED .sample-image-id responsive */
+
+      /* NEW: Responsive samples lightbox */
+      /* REMOVED all #samples-lightbox responsive styles */
+
+      .editorial-grid {
+        grid-template-columns: 1fr;
+        /* Adjusted padding: top is smaller, bottom matches old top */
+        padding: 1.5rem 1rem 6rem 1rem;
+        gap: 1rem;
+      }
+
+      .grid-item {
+        padding-top: 110%;
+      }
+
+      .lightbox-close {
+        top: 1.5rem;
+        right: 1.5rem;
+        font-size: 2rem;
+      }
+
+      .lightbox-quote {
+        font-size: 1rem;
+        max-width: 90%;
+      }
+      
+      /* NEW: Responsive ID in main lightbox */
+      #lightbox-id-wrapper {
+        padding: 0.4rem 1rem;
+        margin-top: 0.75rem;
+      }
+      #lightbox-id {
+        font-size: 0.8rem;
+      }
+      /* NEW: Responsive "Copied!" message */
+      #lightbox-copy-confirm {
+        font-size: 0.8rem;
+        margin-left: 0.5rem;
+      }
+
+      .lightbox img {
+        max-height: 65vh;
+      }
+
+      /* RESPONSIVE FOOTER STYLES */
+      .contact-footer {
+        padding: 4rem 1rem 6rem 1rem;
+      }
+
+      .contact-footer h2 {
+        font-size: 2rem;
+      }
+
+      .contact-footer p {
+        font-size: 0.9rem;
+      }
+
+      .footer-links a {
+        font-size: 1rem;
+        margin: 0 1rem;
+        display: inline-block; /* Prevents awkward line breaks */
+        margin-bottom: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === FIXED UI ELEMENTS === -->
+  <header id="brand-name" class="fixed-ui">
+    <a href="#">SvarnaLens</a>
+  </header>
+
+  <!-- === NEW: 'HOW SAMPLES WORK' SECTION === -->
+  <section class="samples-section">
+    <button class="samples-toggle" aria-expanded="false" aria-controls="samples-panel">
+      <span class="toggle-title">How Our Samples Work</span>
+      <span class="toggle-icon"></span>
+    </button>
+    <div id="samples-panel" class="samples-content" role="region">
+      <!-- NEW: Inner wrapper for padding -->
+      <div class="samples-content-inner">
+        <p>These images are sample jewellery photography creations. You can send us your ideas, sketches, or reference images, and we will generate custom images tailored to your request.
+        <br><br>
+        Click on any image below to automatically copy its unique ID — you can then send it to us via email or Instagram DM.</p>
+        
+        <!-- Video Player Section (Existing) -->
+        <div class="video-player-wrapper">
+          <video controls width="100%" poster="https://placehold.co/1600x900/1A1A1A/555555?text=Your+Video+Preview">
+            <!-- IMPORTANT: Replace this src with the path to your video file -->
+            <source src="YOUR_VIDEO_FILE.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <!-- REMOVED Inner Sample Gallery -->
+        <!-- REMOVED <h3 class="samples-subheading">...</h3> -->
+        <!-- REMOVED <div class="samples-image-grid">...</div> -->
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- === EDITORIAL GALLERY === -->
+  <main class="editorial-grid">
+    <!-- NEW: Added data-id attributes to each grid item -->
+    <div class="grid-item" data-id="#2510230001">
+      <img src="Jewellery pictures/1.png" alt="Cinematic diamond ring on dark silk" data-quote="Elegance is not about being noticed, it's about being remembered." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230002">
+      <img src="Jewellery pictures/2.png" alt="Gold bridal necklace with soft shadows" data-quote="Every jewel tells a story, let ours tell yours." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230003">
+      <img src="Jewellery pictures/3.png" alt="Festive gold earrings with flower prop" data-quote="Beyond brilliance, capturing the soul of luxury." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230004">
+      <img src="Jewellery pictures/4.png" alt="Editorial style diamond bracelet" data-quote="Where art meets adornment, in every exquisite detail." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230005">
+      <img src="Jewellery pictures/5.png" alt="Luxury ring with cinematic lighting" data-quote="The subtle gleam, the enduring allure." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230006">
+      <img src="Jewellery pictures/6.png" alt="Bridal diamond earrings on velvet" data-quote="Crafted in light, perfected by vision." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230007">
+      <img src="Jewellery pictures/7.png" alt="Gold pendant with strong directional light" data-quote="Radiance captured, for a lifetime of admiration." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230008">
+      <img src="Jewellery pictures/8.png" alt="Close-up of diamond earring on model" data-quote="The perfect frame for unforgettable brilliance." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230009">
+      <img src="Jewellery pictures/9.png" alt="Vintage engagement ring on textured background" data-quote="Timeless elegance, beautifully preserved." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230010">
+      <img src="Jewellery pictures/10.png" alt="Modern minimalist pendant on clean surface" data-quote="Simplicity, refined into spectacular form." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230011">
+      <img src="Jewellery pictures/11.png" alt="Stacked diamond rings with soft focus" data-quote="Layers of light, an ode to luxury." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230012">
+      <img src="Jewellery pictures/12.png" alt="Pearl necklace draped elegantly" data-quote="The quiet majesty of a classic." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230013">
+      <img src="Jewellery pictures/13.png" alt="Statement sapphire ring with dramatic lighting" data-quote="Bold statements, immortalized in light." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230014">
+      <img src="Jewellery pictures/14.png" alt="Delicate gold chain with a small charm" data-quote="Whispers of luxury, captured in detail." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230015">
+      <img src="Jewellery pictures/15.png" alt="Elegant gold bangles stacked beautifully" data-quote="Tradition meets contemporary elegance." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230016">
+      <img src="Jewellery pictures/16.png" alt="Sparkling diamond studs on marble" data-quote="Small details, infinite brilliance." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230017">
+      <img src="Jewellery pictures/17.png" alt="Vintage gold brooch with intricate design" data-quote="Heritage crafted in gold." loading="lazy">
+    </div>
+
+    <div class="grid-item" data-id="#2510230018">
+      <img src="Jewellery pictures/18.png" alt="Luxurious diamond tennis bracelet" data-quote="Grace that encircles you." loading="lazy">
+    </div>
+  </main>
+
+  <!-- === PREMIUM FOOTER SECTION === -->
+  <footer class="contact-footer">
+    <h2>Inquiries</h2>
+    <p>For collaborations, bookings, and print inquiries, please reach out.</p>
+    <div class="footer-links">
+      <a href="mailto:svarnalens@gmail.com">svarnalens@gmail.com</a>
+      <a href="https://www.instagram.com/svarnalens/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    </div>
+  </footer>
+
+  <!-- === LIGHTBOX === -->
+  <div id="lightbox" class="lightbox">
+    <span id="lightbox-close" class="lightbox-close">&times;</span>
+    <img id="lightbox-image" src="" alt="Enlarged editorial jewellery image">
+    <p id="lightbox-quote" class="lightbox-quote"></p>
+    <!-- NEW: Added wrapper and span for the ID -->
+    <div id="lightbox-id-wrapper" title="Click to copy ID">
+      <span id="lightbox-id"></span>
+      <!-- NEW: Added "Copied!" confirmation message -->
+      <span id="lightbox-copy-confirm">Copied!</span>
+    </div>
+  </div>
+
+  <!-- REMOVED SAMPLES-ONLY LIGHTBOX HTML -->
+
+  <!-- === JAVASCRIPT === -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- Lightbox Logic (Existing) ---
+      const gridItems = document.querySelectorAll('.grid-item');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxQuote = document.getElementById('lightbox-quote');
+      const lightboxClose = document.getElementById('lightbox-close');
+      const lightboxIdWrapper = document.getElementById('lightbox-id-wrapper'); // NEW
+      const lightboxId = document.getElementById('lightbox-id'); // NEW
+      const lightboxCopyConfirm = document.getElementById('lightbox-copy-confirm'); // NEW
+
+      // NEW: Clipboard fallback function
+      function copyToClipboard(text) {
+        try {
+          if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).catch(() => {
+              fallbackCopy(text);
+            });
+          } else {
+            fallbackCopy(text);
+          }
+        } catch (err) {
+          fallbackCopy(text);
+        }
+      }
+
+      // NEW: Fallback copy function
+      function fallbackCopy(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed'; // Avoid scrolling to bottom
+        textArea.style.top = '0';
+        textArea.style.left = '0';
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand('copy');
+        } catch (err) {
+          console.error('Fallback: Oops, unable to copy', err);
+        }
+        document.body.removeChild(textArea);
+      }
+
+      // Open Lightbox
+      gridItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const imgElement = item.querySelector('img');
+          if (imgElement) {
+            const imgSrc = imgElement.src;
+            const imgAlt = imgElement.alt;
+            const imgQuote = imgElement.getAttribute('data-quote');
+            const imgId = item.getAttribute('data-id'); // NEW: Get ID from grid item
+            
+            lightboxImage.src = imgSrc;
+            lightboxImage.alt = imgAlt;
+            lightboxQuote.textContent = imgQuote;
+            lightboxId.textContent = imgId; // NEW: Set the ID text
+            lightbox.style.display = 'flex';
+            lightbox.classList.remove('fade-out');
+          }
+        });
+      });
+
+      // Close Lightbox
+      const closeLightbox = () => {
+        lightbox.classList.add('fade-out');
+        setTimeout(() => {
+          lightbox.style.display = 'none';
+          lightboxImage.src = '';
+          lightboxQuote.textContent = '';
+          lightboxId.textContent = ''; // NEW: Clear the ID text
+          // NEW: Hide copy confirmation on close
+          lightboxCopyConfirm.style.opacity = '0';
+          lightboxCopyConfirm.style.visibility = 'hidden';
+          lightbox.classList.remove('fade-out');
+        }, 300);
+      };
+
+      lightboxClose.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', (e) => {
+        // NEW: Check that the click is on the background and not the ID wrapper
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      // NEW: Add click listener to the ID wrapper in the lightbox
+      lightboxIdWrapper.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevents the lightbox from closing
+        const idToCopy = lightboxId.textContent;
+        copyToClipboard(idToCopy);
+
+        // Show "Copied!" confirmation in the lightbox
+        lightboxCopyConfirm.style.opacity = '1';
+        lightboxCopyConfirm.style.visibility = 'visible';
+        setTimeout(() => {
+          lightboxCopyConfirm.style.opacity = '0';
+          lightboxCopyConfirm.style.visibility = 'hidden';
+        }, 1500);
+      });
+
+      // --- 'How Samples Work' Toggle Logic (Existing) ---
+      const toggleButton = document.querySelector('.samples-toggle');
+      const samplesPanel = document.getElementById('samples-panel');
+
+      if (toggleButton && samplesPanel) {
+        toggleButton.addEventListener('click', () => {
+          const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+          toggleButton.setAttribute('aria-expanded', !isExpanded);
+
+          if (!isExpanded) {
+            // Open the panel
+            // scrollHeight includes the content's padding, giving us the exact height
+            samplesPanel.style.maxHeight = samplesPanel.scrollHeight + 'px';
+          } else {
+            // Close the panel
+            samplesPanel.style.maxHeight = null;
+          }
+        });
+      }
+
+      // --- REMOVED SAMPLES GALLERY LIGHTBOX & CLIPBOARD LOGIC ---
+      
+      // Add Escape key listener for the main lightbox
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          if (lightbox.style.display === 'flex') {
+            closeLightbox();
+          }
+          // REMOVED check for samplesLightbox
+        }
+      });
+      
+    });
+  </script>
+</body>
+</html>
+

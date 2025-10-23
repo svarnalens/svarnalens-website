@@ -1198,19 +1198,19 @@ Send this to me as soon as possible.
   </pre>
 </div>
 
-  </pre>
+      
+    <div class="copy-dm-action-wrapper" style="text-align: center; margin-bottom: 20px;">
+  <button id="copy-dm-button" class="copy-dm-button">Copy Message</button>
+  <span id="copy-dm-confirm" style="display: block; margin-top: 5px;">Copied!</span>
 </div>
 
-      
-      <div class="copy-dm-action-wrapper">
-        <button id="copy-dm-button" class="copy-dm-button">Copy Message</button>
-        <span id="copy-dm-confirm">Copied!</span>
-      </div>
-    </div>
-    <div class="footer-links">
-      <a href="mailto:svarnalens@gmail.com">svarnalens@gmail.com</a>
-      <a href="https://www.instagram.com/svarnalens/" target="_blank" rel="noopener noreferrer">Instagram</a>
-    </div>
+<div class="footer-links" style="text-align: center;">
+  <a href="mailto:svarnalens@gmail.com">svarnalens@gmail.com</a>
+  <a href="https://www.instagram.com/svarnalens/" target="_blank" rel="noopener noreferrer">Instagram</a>
+</div>
+
+</div>
+
   </footer>
 
   <div id="lightbox" class="lightbox">
@@ -1294,8 +1294,8 @@ Send this to me as soon as possible.
             <tr>
               <td>Revisions</td>
               <td class="icon-cross">❌</td>
-              <td>✅ (minor)</td>
-              <td>✅</td>
+              <td>✅ (with feedback)</td>
+              <td>✅ (with feedback)</td>
               <td>✅ (with feedback)</td>
             </tr>
           </tbody>
@@ -1518,9 +1518,16 @@ Send this to me as soon as possible.
 
       if (copyDmButton && copyDmConfirm) {
         // Define the multi-line message using template literals
-        const dmMessage = `Hello, here’s my idea: [Your Jewellery Brand Name], Instagram: @svarnalens
-ID: #[Enter Image ID]
-Share your idea. We’ll create your custom jewellery visuals.`;
+        const dmMessage = `Write your jewellery brand below:
+[Your Jewellery Brand Name]
+
+(Optional) If using a gallery image, add the Image ID here:
+[Enter Image ID]
+
+Hello, here’s my idea:
+[Elaborate your idea here]
+
+Send this to me as soon as possible.`;
 
         copyDmButton.addEventListener('click', () => {
           // Reuse the existing copyToClipboard function

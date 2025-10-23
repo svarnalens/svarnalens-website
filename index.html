@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
   <style>
-    /* === BASE & TYPOGRAPHY === */
+    /* === BASE & TYPography === */
     :root {
       /* Luxe Black & Gold Color Palette */
       --black-bg: #0A0A0A;
@@ -110,7 +110,7 @@
       transform: rotate(135deg); /* A nice spin on hover */
     }
     
-    /* === NEW: VISION BUTTON === */
+    /* === VISION BUTTON === */
     #vision-button {
       /* Copied from #pricing-button */
       top: 0;
@@ -134,7 +134,6 @@
       border-color: var(--color-accent-gold);
       color: var(--color-accent-gold);
     }
-    /* === END NEW STYLES === */
 
     /* === PRICING BUTTON (Unchanged) === */
     #pricing-button {
@@ -462,6 +461,79 @@
       margin: 0 auto 2.5rem auto;
       line-height: 1.6;
     }
+    
+    /* === CSS MODIFICATION START: New Styles for DM Prompt Box === */
+    .dm-prompt-container {
+      max-width: 600px;
+      margin: 3rem auto 3rem auto; /* Added space */
+      text-align: left;
+    }
+
+    .dm-prompt-text {
+      background: #1A1A1A;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 6px;
+      padding: 1.5rem;
+      color: var(--color-subtle-text);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      white-space: pre-wrap; /* Ensures line breaks are respected */
+      -webkit-user-select: none; /* Prevents text selection */
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .dm-prompt-text .placeholder {
+      color: var(--gold);
+      font-weight: 500;
+    }
+    
+    .copy-dm-action-wrapper {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .copy-dm-button {
+      background: var(--gold);
+      color: var(--black-bg);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      padding: 0.8rem 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block; /* Centered button */
+      width: auto;
+    }
+
+    .copy-dm-button:hover {
+      background: var(--ivory);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+    
+    .copy-dm-button:active {
+      transform: scale(0.98);
+      background: var(--bronze);
+    }
+
+    /* Confirmation message for new DM copy button */
+    #copy-dm-confirm {
+      color: var(--gold);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-left: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      display: inline-block; /* Aligns with button */
+      vertical-align: middle;
+    }
+    /* === CSS MODIFICATION END === */
 
     .footer-links a {
       font-family: var(--font-sans);
@@ -647,7 +719,7 @@
       font-size: 1rem;
     }
     
-    /* === NEW: PAYMENT QUOTE (inside pricing modal) === */
+    /* === PAYMENT QUOTE (inside pricing modal) === */
     .payment-quote {
       font-family: var(--font-sans);
       font-size: 0.9rem;
@@ -663,10 +735,9 @@
       color: var(--modal-text-dark);
       font-weight: 500;
     }
-    /* === END NEW STYLES === */
     
     
-    /* === NEW: VISION MODAL STYLES === */
+    /* === VISION MODAL STYLES === */
     #vision-modal {
       /* Copied from #pricing-modal */
       display: none;
@@ -761,7 +832,6 @@
       color: var(--gold);
       font-weight: 500;
     }
-    /* === END NEW STYLES === */
 
 
     /* === RESPONSIVE DESIGN === */
@@ -773,7 +843,7 @@
     }
 
     @media (max-width: 800px) {
-      /* === NEW: Responsive Vision Modal Layout === */
+      /* === Responsive Vision Modal Layout === */
       .vision-modal-body {
         flex-direction: column;
       }
@@ -781,7 +851,6 @@
         max-width: 400px; /* Keep max-width */
         margin-bottom: 1.5rem;
       }
-      /* === END NEW STYLES === */
     }
     
     @media (max-width: 768px) {
@@ -790,7 +859,7 @@
         font-size: 0.8rem;
       }
       
-      /* === NEW: Responsive Vision Button === */
+      /* === Responsive Vision Button === */
       #vision-button {
         /* approx 5.5rem button width + 1.5rem margin + 0.5rem gap */
         right: 7.5rem; 
@@ -798,7 +867,6 @@
         margin: 1.25rem 0;
         font-size: 0.8rem;
       }
-      /* === END NEW STYLES === */
 
       /* Responsive Pricing Button */
       #pricing-button {
@@ -895,6 +963,24 @@
       .contact-footer p {
         font-size: 0.9rem;
       }
+      
+      /* === CSS MODIFICATION START: Responsive DM Prompt Box === */
+      .dm-prompt-container {
+        margin: 2.5rem auto 2.5rem auto;
+      }
+      .dm-prompt-text {
+        font-size: 0.9rem;
+        padding: 1.2rem;
+      }
+      .copy-dm-button {
+        width: 100%; /* Full width on mobile */
+      }
+      #copy-dm-confirm {
+        display: block; /* Stack below button on mobile */
+        margin-left: 0;
+        margin-top: 0.75rem;
+      }
+      /* === CSS MODIFICATION END === */
 
       .footer-links a {
         font-size: 1rem;
@@ -961,7 +1047,7 @@
         border-radius: 6px;
       }
       
-      /* === NEW: RESPONSIVE VISION MODAL === */
+      /* === RESPONSIVE VISION MODAL === */
       #vision-modal {
         padding: 1rem;
         align-items: flex-end; /* Aligns modal to bottom */
@@ -985,14 +1071,12 @@
       .vision-text-wrapper p {
         font-size: 0.9rem;
       }
-      /* === END NEW STYLES === */
 
-      /* === NEW: RESPONSIVE PAYMENT QUOTE === */
+      /* === RESPONSIVE PAYMENT QUOTE === */
       .payment-quote {
         font-size: 0.85rem;
         margin-top: 1.5rem;
       }
-      /* === END NEW STYLES === */
     }
   </style>
 </head>
@@ -1098,6 +1182,31 @@
     <h2> Premium jewellery visuals for your Socials.</h2>
     <h2>Interested in Our Samples?</h2>
     <p>Click any image to copy its ID and send it via email or Instagram DM, or share your idea — we'll respond within 24-48 hours.</p>
+
+<div class="dm-prompt-container">
+  <pre class="dm-prompt-text">
+Write your jewellery brand below:
+<span class="placeholder">[Your Jewellery Brand Name]</span>
+
+(Optional) If using a gallery image, add the Image ID here:
+<span class="placeholder">[Enter Image ID]</span>
+
+Hello, here’s my idea:
+<span class="placeholder">[Elaborate your idea here]</span>
+
+Send this to me as soon as possible.
+  </pre>
+</div>
+
+  </pre>
+</div>
+
+      
+      <div class="copy-dm-action-wrapper">
+        <button id="copy-dm-button" class="copy-dm-button">Copy Message</button>
+        <span id="copy-dm-confirm">Copied!</span>
+      </div>
+    </div>
     <div class="footer-links">
       <a href="mailto:svarnalens@gmail.com">svarnalens@gmail.com</a>
       <a href="https://www.instagram.com/svarnalens/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -1223,7 +1332,7 @@
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // --- Lightbox Logic (Existing) ---
+      // --- Lightbox Logic (Existing, Unchanged) ---
       const gridItems = document.querySelectorAll('.grid-item');
       const lightbox = document.getElementById('lightbox');
       const lightboxImage = document.getElementById('lightbox-image');
@@ -1233,7 +1342,7 @@
       const lightboxId = document.getElementById('lightbox-id'); 
       const lightboxCopyConfirm = document.getElementById('lightbox-copy-confirm'); 
 
-      // Clipboard fallback function
+      // Clipboard fallback function (Unchanged)
       function copyToClipboard(text) {
         try {
           if (navigator.clipboard) {
@@ -1248,7 +1357,7 @@
         }
       }
 
-      // Fallback copy function
+      // Fallback copy function (Unchanged)
       function fallbackCopy(text) {
         const textArea = document.createElement('textarea');
         textArea.value = text;
@@ -1267,7 +1376,7 @@
         document.body.removeChild(textArea);
       }
 
-      // Open Lightbox
+      // Open Lightbox (Unchanged)
       gridItems.forEach(item => {
         item.addEventListener('click', () => {
           const imgElement = item.querySelector('img');
@@ -1287,7 +1396,7 @@
         });
       });
 
-      // Close Lightbox
+      // Close Lightbox (Unchanged)
       const closeLightbox = () => {
         lightbox.classList.add('fade-out');
         setTimeout(() => {
@@ -1309,7 +1418,7 @@
         }
       });
 
-      // Add click listener to the ID wrapper in the lightbox
+      // Lightbox ID copy listener (Unchanged)
       lightboxIdWrapper.addEventListener('click', (e) => {
         e.stopPropagation(); // Prevents the lightbox from closing
         const idToCopy = lightboxId.textContent;
@@ -1324,7 +1433,7 @@
         }, 1500);
       });
 
-      // --- 'How Samples Work' Toggle Logic (Existing) ---
+      // --- 'How Samples Work' Toggle Logic (Existing, Unchanged) ---
       const toggleButton = document.querySelector('.samples-toggle');
       const samplesPanel = document.getElementById('samples-panel');
 
@@ -1341,7 +1450,7 @@
         });
       }
 
-      // --- PRICING MODAL LOGIC (Existing) ---
+      // --- PRICING MODAL LOGIC (Existing, Unchanged) ---
       const pricingButton = document.getElementById('pricing-button');
       const pricingModal = document.getElementById('pricing-modal');
       const pricingModalClose = document.getElementById('pricing-modal-close');
@@ -1372,7 +1481,7 @@
         });
       }
       
-      // --- NEW: VISION MODAL LOGIC ---
+      // --- VISION MODAL LOGIC (Existing, Unchanged) ---
       const visionButton = document.getElementById('vision-button');
       const visionModal = document.getElementById('vision-modal');
       const visionModalClose = document.getElementById('vision-modal-close');
@@ -1402,9 +1511,34 @@
           }
         });
       }
-      // --- END NEW SCRIPT ---
 
-      // --- UPDATED Escape key listener ---
+      // --- SCRIPT MODIFICATION START: New Logic for DM Copy Button ---
+      const copyDmButton = document.getElementById('copy-dm-button');
+      const copyDmConfirm = document.getElementById('copy-dm-confirm');
+
+      if (copyDmButton && copyDmConfirm) {
+        // Define the multi-line message using template literals
+        const dmMessage = `Hello, here’s my idea: [Your Jewellery Brand Name], Instagram: @svarnalens
+ID: #[Enter Image ID]
+Share your idea. We’ll create your custom jewellery visuals.`;
+
+        copyDmButton.addEventListener('click', () => {
+          // Reuse the existing copyToClipboard function
+          copyToClipboard(dmMessage); 
+
+          // Show "Copied!" confirmation
+          copyDmConfirm.style.opacity = '1';
+          copyDmConfirm.style.visibility = 'visible';
+          setTimeout(() => {
+            copyDmConfirm.style.opacity = '0';
+            copyDmConfirm.style.visibility = 'hidden';
+          }, 2000); // Show for 2 seconds
+        });
+      }
+      // --- SCRIPT MODIFICATION END ---
+
+
+      // --- UPDATED Escape key listener (Existing, Unchanged) ---
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
           // Close main lightbox
@@ -1415,14 +1549,14 @@
           if (pricingModal && pricingModal.style.display === 'flex') {
             closePricingModal();
           }
-          // NEW: Close vision modal
+          // Close vision modal
           if (visionModal && visionModal.style.display === 'flex') {
             closeVisionModal();
           }
         }
       });
       
-      // --- Disable Right-Click on All Images (Existing) ---
+      // --- Disable Right-Click on All Images (Existing, Unchanged) ---
       const allImages = document.querySelectorAll('img');
       allImages.forEach(image => {
         image.addEventListener('contextmenu', (e) => {

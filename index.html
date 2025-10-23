@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SvarnaLens | Editorial Jewellery Photography</title>
-  <meta name="description" content="SvarnaLens: Ultra-minimal, AI-powered jewellery photography with a Vogue-level editorial style.">
+  <title>SvarnaLens | Luxury Jewellery Social Media Images</title>
+  <meta name="description" content="SvarnaLens: Custom AI-crafted jewellery visuals, designed to showcase your brand with elegance.">
   
-  <!-- Fonts: Playfair Display (Elegant Serif) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
   
-  <!-- Fonts: Inter (Clean Sans-serif) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
   
   <style>
@@ -84,6 +82,29 @@
       color: var(--gold);
       letter-spacing: 0.5px;
     }
+
+    /* === NEW: Styles for Brand Name Logo === */
+    #brand-name a {
+      display: flex;
+      align-items: center; /* Vertically centers text and icon */
+      gap: 0.4rem; /* Space between "SvarnaLens" and icon */
+    }
+
+    .logo-sparkle {
+      width: 0.8em; /* 0.8em of the parent's 1.25rem font-size */
+      height: 0.8em;
+      flex-shrink: 0;
+      opacity: 0.85;
+      transition: all 0.4s ease;
+      /* fill="currentColor" in the SVG will make it inherit the --gold color */
+    }
+
+    #brand-name a:hover .logo-sparkle {
+      opacity: 1;
+      transform: rotate(135deg); /* A nice spin on hover */
+    }
+    /* === END NEW STYLES === */
+
 
     /* === NEW: 'HOW SAMPLES WORK' SECTION === */
     .samples-section {
@@ -423,6 +444,14 @@
       #brand-name {
         font-size: 1rem;
       }
+      
+      /* === NEW: Responsive logo size === */
+      .logo-sparkle {
+        width: 0.9em; /* Slightly larger relative to smaller text */
+        height: 0.9em;
+        gap: 0.3rem;
+      }
+      /* === END NEW STYLES === */
 
       /* NEW: Responsive 'Samples' section */
       .samples-section {
@@ -523,44 +552,38 @@
 </head>
 <body>
 
-  <!-- === FIXED UI ELEMENTS === -->
   <header id="brand-name" class="fixed-ui">
-    <a href="#">SvarnaLens</a>
+    <a href="#">
+      <span>SvarnaLens</span>
+      <svg class="logo-sparkle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 0L5.9 5.9L0 8L5.9 10.1L8 16L10.1 10.1L16 8L10.1 5.9L8 0Z"/>
+      </svg>
+    </a>
   </header>
 
-  <!-- === NEW: 'HOW SAMPLES WORK' SECTION === -->
   <section class="samples-section">
     <button class="samples-toggle" aria-expanded="false" aria-controls="samples-panel">
       <span class="toggle-title">How Our Samples Work</span>
       <span class="toggle-icon"></span>
     </button>
     <div id="samples-panel" class="samples-content" role="region">
-      <!-- NEW: Inner wrapper for padding -->
       <div class="samples-content-inner">
-        <p>These images are sample jewellery photography creations. You can send us your ideas, sketches, or reference images, and we will generate custom images tailored to your request.
+        <p>Each visual is an AI-crafted expression of elegance, created to highlight the beauty of fine jewellery. Share your ideas or references, and we’ll design custom imagery that reflects your brand’s essence.
         <br><br>
         Click on any image below to automatically copy its unique ID — you can then send it to us via email or Instagram DM.</p>
         
-        <!-- Video Player Section (Existing) -->
         <div class="video-player-wrapper">
           <video controls width="100%" poster="https://placehold.co/1600x900/1A1A1A/555555?text=Your+Video+Preview">
-            <!-- IMPORTANT: Replace this src with the path to your video file -->
             <source src="YOUR_VIDEO_FILE.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
         </div>
 
-        <!-- REMOVED Inner Sample Gallery -->
-        <!-- REMOVED <h3 class="samples-subheading">...</h3> -->
-        <!-- REMOVED <div class="samples-image-grid">...</div> -->
-        
-      </div>
+        </div>
     </div>
   </section>
 
-  <!-- === EDITORIAL GALLERY === -->
   <main class="editorial-grid">
-    <!-- NEW: Added data-id attributes to each grid item -->
     <div class="grid-item" data-id="#2510230001">
       <img src="Jewellery pictures/1.png" alt="Cinematic diamond ring on dark silk" data-quote="Elegance is not about being noticed, it's about being remembered." loading="lazy">
     </div>
@@ -610,7 +633,7 @@
     </div>
 
     <div class="grid-item" data-id="#2510230013">
-      <img src="Jewellery pictures/13.png" alt="Statement sapphire ring with dramatic lighting" data-quote="Bold statements, immortalized in light." loading="lazy">
+      <img src="Jewellery pictures/13.png" alt="Statement sapphire ring with dramatic lighting" data-quote="Bold statements, immortalized in light." loading.lazy">
     </div>
 
     <div class="grid-item" data-id="#2510230014">
@@ -634,32 +657,26 @@
     </div>
   </main>
 
-  <!-- === PREMIUM FOOTER SECTION === -->
   <footer class="contact-footer">
-    <h2>Inquiries</h2>
-    <p>For collaborations, bookings, and print inquiries, please reach out.</p>
+    <h2> Premium jewellery visuals for your Socials.</h2>
+    <h2>Interested in Our Samples?</h2>
+    <p>Click any image to copy its ID and send it via email or Instagram DM, or share your idea — we'll respond within 24-48 hours.</p>
     <div class="footer-links">
       <a href="mailto:svarnalens@gmail.com">svarnalens@gmail.com</a>
       <a href="https://www.instagram.com/svarnalens/" target="_blank" rel="noopener noreferrer">Instagram</a>
     </div>
   </footer>
 
-  <!-- === LIGHTBOX === -->
   <div id="lightbox" class="lightbox">
     <span id="lightbox-close" class="lightbox-close">&times;</span>
     <img id="lightbox-image" src="" alt="Enlarged editorial jewellery image">
     <p id="lightbox-quote" class="lightbox-quote"></p>
-    <!-- NEW: Added wrapper and span for the ID -->
     <div id="lightbox-id-wrapper" title="Click to copy ID">
       <span id="lightbox-id"></span>
-      <!-- NEW: Added "Copied!" confirmation message -->
       <span id="lightbox-copy-confirm">Copied!</span>
     </div>
   </div>
 
-  <!-- REMOVED SAMPLES-ONLY LIGHTBOX HTML -->
-
-  <!-- === JAVASCRIPT === -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // --- Lightbox Logic (Existing) ---
@@ -797,8 +814,16 @@
         }
       });
       
+      // --- NEW: Disable Right-Click on All Images ---
+      const allImages = document.querySelectorAll('img');
+      allImages.forEach(image => {
+        image.addEventListener('contextmenu', (e) => {
+          e.preventDefault(); // This prevents the default right-click menu
+        });
+      });
+      // --- END NEW SCRIPT ---
+
     });
   </script>
 </body>
 </html>
-

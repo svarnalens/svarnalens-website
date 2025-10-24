@@ -257,7 +257,8 @@
       cursor: pointer;
       background-color: rgba(191, 191, 191, 0.05);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-      transition: box-shadow 0.4s ease, transform 0.4s ease;
+      /* MODIFICATION: Added transition for pagination */
+      transition: box-shadow 0.4s ease, transform 0.4s ease, opacity 0.4s ease;
       border: 1px solid rgba(212, 175, 55, 0.1);
     }
 
@@ -280,6 +281,16 @@
       transform: scale(1.05);
       filter: brightness(0.9) saturate(1.1);
     }
+    
+    /* === CSS ADDITION: PAGINATION VISIBILITY === */
+    .grid-item.page-hidden {
+      opacity: 0;
+      transform: scale(0.95);
+      pointer-events: none;
+      display: none; /* Hide from layout */
+    }
+    /* === END CSS ADDITION === */
+
 
     /* === LIGHTBOX === */
     .lightbox {
@@ -833,6 +844,86 @@
       font-weight: 500;
     }
 
+    
+    /* === CSS ADDITION START: NEW PAGINATION STYLES === */
+    .pagination-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* This padding respects the existing layout's spacing */
+      padding: 0 1.5rem; 
+      /* This moves the pagination up to replace the grid's bottom padding */
+      margin-top: -6rem;
+      padding-bottom: 8rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .pagination {
+      display: flex;
+      flex-wrap: wrap; /* Allows wrapping on small screens */
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      gap: 0.75rem; /* Space between buttons */
+    }
+
+    .page-item .page-link {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 44px; /* Good for touch targets */
+      height: 44px;
+      padding: 0.5rem 1rem;
+      
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      
+      /* Styles to match your existing buttons */
+      color: var(--color-subtle-text);
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(245, 245, 245, 0.2);
+      border-radius: 4px;
+      
+      /* Smooth transition for hover effects */
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .page-item .page-link:hover,
+    .page-item .page-link:focus {
+      color: var(--color-accent-gold);
+      border-color: var(--color-accent-gold);
+      transform: scale(1.05); /* Gentle scale */
+      
+      /* The requested "glow" effect, using your theme's gold */
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.4); 
+      
+      z-index: 2; /* Ensures shadow isn't clipped */
+      position: relative;
+    }
+    
+    /* Wider 'Next' button */
+    .page-item.next .page-link {
+      padding: 0.5rem 1.5rem;
+    }
+
+    /* Active page style */
+    .page-item.active .page-link,
+    .page-item.active .page-link:hover,
+    .page-item.active .page-link:focus {
+      background-color: var(--color-accent-gold);
+      color: var(--black-bg);
+      border-color: var(--color-accent-gold);
+      font-weight: 600;
+      transform: scale(1); /* No scale on active */
+      box-shadow: none; /* No glow on active */
+      cursor: default;
+    }
+    /* === CSS ADDITION END === */
+    
 
     /* === RESPONSIVE DESIGN === */
     @media (max-width: 992px) {
@@ -1077,6 +1168,18 @@
         font-size: 0.85rem;
         margin-top: 1.5rem;
       }
+
+      /* === CSS ADDITION: RESPONSIVE PAGINATION === */
+      .pagination-nav {
+        /* The grid's responsive padding is 6rem, so we adjust */
+        margin-top: -4rem;
+        padding-bottom: 6rem;
+      }
+      .page-item .page-link {
+        font-size: 0.9rem;
+        min-width: 40px;
+        height: 40px;
+      }
     }
   </style>
 </head>
@@ -1122,61 +1225,84 @@
   </section>
 
   <main class="editorial-grid">
-    <div class="grid-item" data-id="#2510230001">
-      <img src="Jewellery pictures/1.png" alt="Cinematic diamond ring on dark silk" data-quote="Elegance is not about being noticed, it's about being remembered." loading="lazy">
+      <div class="grid-item" data-id="#2510230001" data-page="1">
+      <img src="Jewellery pictures/22.png" alt="Cinematic diamond ring on dark silk" data-quote="Elegance is not about being noticed, it's about being remembered." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230002">
-      <img src="Jewellery pictures/2.png" alt="Gold bridal necklace with soft shadows" data-quote="Every jewel tells a story, let ours tell yours." loading="lazy">
+    <div class="grid-item" data-id="#2510230001" data-page="1">
+      <img src="Jewellery pictures/21.png" alt="Cinematic diamond ring on dark silk" data-quote="Elegance is not about being noticed, it's about being remembered." loading="lazy">
+     </div>
+      <div class="grid-item" data-id="#2510230001" data-page="1">
+      <img src="Jewellery pictures/20.png" alt="Cinematic diamond ring on dark silk" data-quote="Elegance is not about being noticed, it's about being remembered." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230003">
-      <img src="Jewellery pictures/3.png" alt="Festive gold earrings with flower prop" data-quote="Beyond brilliance, capturing the soul of luxury." loading="lazy">
+    <div class="grid-item" data-id="#2510230001" data-page="1">
+      <img src="Jewellery pictures/19.png" alt="Cinematic diamond ring on dark silk" data-quote="Elegance is not about being noticed, it's about being remembered." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230004">
-      <img src="Jewellery pictures/4.png" alt="Editorial style diamond bracelet" data-quote="Where art meets adornment, in every exquisite detail." loading="lazy">
+    <div class="grid-item" data-id="#2510230001" data-page="1">
+      <img src="Jewellery pictures/18.png" alt="Cinematic diamond ring on dark silk" data-quote="Elegance is not about being noticed, it's about being remembered." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230005">
-      <img src="Jewellery pictures/5.png" alt="Luxury ring with cinematic lighting" data-quote="The subtle gleam, the enduring allure." loading="lazy">
+    <div class="grid-item" data-id="#2510230002" data-page="1">
+      <img src="Jewellery pictures/17.png" alt="Gold bridal necklace with soft shadows" data-quote="Every jewel tells a story, let ours tell yours." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230006">
-      <img src="Jewellery pictures/6.png" alt="Bridal diamond earrings on velvet" data-quote="Crafted in light, perfected by vision." loading="lazy">
+    <div class="grid-item" data-id="#2510230003" data-page="1">
+      <img src="Jewellery pictures/16.png" alt="Festive gold earrings with flower prop" data-quote="Beyond brilliance, capturing the soul of luxury." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230007">
-      <img src="Jewellery pictures/7.png" alt="Gold pendant with strong directional light" data-quote="Radiance captured, for a lifetime of admiration." loading="lazy">
+    <div class="grid-item" data-id="#2510230004" data-page="1">
+      <img src="Jewellery pictures/15.png" alt="Editorial style diamond bracelet" data-quote="Where art meets adornment, in every exquisite detail." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230008">
-      <img src="Jewellery pictures/8.png" alt="Close-up of diamond earring on model" data-quote="The perfect frame for unforgettable brilliance." loading="lazy">
+    <div class="grid-item" data-id="#2510230005" data-page="1">
+      <img src="Jewellery pictures/14.png" alt="Luxury ring with cinematic lighting" data-quote="The subtle gleam, the enduring allure." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230009">
-      <img src="Jewellery pictures/9.png" alt="Vintage engagement ring on textured background" data-quote="Timeless elegance, beautifully preserved." loading="lazy">
+    <div class="grid-item" data-id="#2510230006" data-page="1">
+      <img src="Jewellery pictures/13.png" alt="Bridal diamond earrings on velvet" data-quote="Crafted in light, perfected by vision." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230010">
-      <img src="Jewellery pictures/10.png" alt="Modern minimalist pendant on clean surface" data-quote="Simplicity, refined into spectacular form." loading="lazy">
+    
+    <div class="grid-item" data-id="#2510230007" data-page="1">
+      <img src="Jewellery pictures/12.png" alt="Gold pendant with strong directional light" data-quote="Radiance captured, for a lifetime of admiration." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230011">
-      <img src="Jewellery pictures/11.png" alt="Stacked diamond rings with soft focus" data-quote="Layers of light, an ode to luxury." loading="lazy">
+    <div class="grid-item" data-id="#2510230008" data-page="1">
+      <img src="Jewellery pictures/11.png" alt="Close-up of diamond earring on model" data-quote="The perfect frame for unforgettable brilliance." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230012">
-      <img src="Jewellery pictures/12.png" alt="Pearl necklace draped elegantly" data-quote="The quiet majesty of a classic." loading="lazy">
+    <div class="grid-item" data-id="#2510230009" data-page="1">
+      <img src="Jewellery pictures/10.png" alt="Vintage engagement ring on textured background" data-quote="Timeless elegance, beautifully preserved." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230013">
-      <img src="Jewellery pictures/13.png" alt="Statement sapphire ring with dramatic lighting" data-quote="Bold statements, immortalized in light." loading.lazy">
+    <div class="grid-item" data-id="#2510230010" data-page="1">
+      <img src="Jewellery pictures/9.png" alt="Modern minimalist pendant on clean surface" data-quote="Simplicity, refined into spectacular form." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230014">
-      <img src="Jewellery pictures/14.png" alt="Delicate gold chain with a small charm" data-quote="Whispers of luxury, captured in detail." loading="lazy">
+    <div class="grid-item" data-id="#2510230011" data-page="1">
+      <img src="Jewellery pictures/8.png" alt="Stacked diamond rings with soft focus" data-quote="Layers of light, an ode to luxury." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230015">
-      <img src="Jewellery pictures/15.png" alt="Elegant gold bangles stacked beautifully" data-quote="Tradition meets contemporary elegance." loading="lazy">
+    <div class="grid-item" data-id="#2510230012" data-page="1">
+      <img src="Jewellery pictures/7.png" alt="Pearl necklace draped elegantly" data-quote="The quiet majesty of a classic." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230016">
-      <img src="Jewellery pictures/16.png" alt="Sparkling diamond studs on marble" data-quote="Small details, infinite brilliance." loading="lazy">
+
+    <div class="grid-item" data-id="#2510230013" data-page="1">
+      <img src="Jewellery pictures/6.png" alt="Statement sapphire ring with dramatic lighting" data-quote="Bold statements, immortalized in light." loading.lazy">
     </div>
-    <div class="grid-item" data-id="#2510230017">
-      <img src="Jewellery pictures/17.png" alt="Vintage gold brooch with intricate design" data-quote="Heritage crafted in gold." loading="lazy">
+    <div class="grid-item" data-id="#2510230014" data-page="1">
+      <img src="Jewellery pictures/5.png" alt="Delicate gold chain with a small charm" data-quote="Whispers of luxury, captured in detail." loading="lazy">
     </div>
-    <div class="grid-item" data-id="#2510230018">
-      <img src="Jewellery pictures/18.png" alt="Luxurious diamond tennis bracelet" data-quote="Grace that encircles you." loading="lazy">
+    <div class="grid-item" data-id="#2510230015" data-page="1">
+      <img src="Jewellery pictures/4.png" alt="Elegant gold bangles stacked beautifully" data-quote="Tradition meets contemporary elegance." loading="lazy">
+    </div>
+    <div class="grid-item" data-id="#2510230016" data-page="1">
+      <img src="Jewellery pictures/3.png" alt="Sparkling diamond studs on marble" data-quote="Small details, infinite brilliance." loading="lazy">
+    </div>
+    <div class="grid-item" data-id="#2510230017" data-page="2">
+      <img src="Jewellery pictures/2.png" alt="Vintage gold brooch with intricate design" data-quote="Heritage crafted in gold." loading="lazy">
+    </div>
+    <div class="grid-item" data-id="#2510230018" data-page="2">
+      <img src="Jewellery pictures/1.png" alt="Luxurious diamond tennis bracelet" data-quote="Grace that encircles you." loading="lazy">
     </div>
   </main>
+
+  <nav class="pagination-nav" aria-label="Page navigation">
+    <ul class="pagination">
+      <li class="page-item active"><a class="page-link" href="#" data-page-num="1">1</a></li>
+      <li class="page-item"><a class="page-link" href="#" data-page-num="2">2</a></li>
+      <li class="page-item"><a class="page-link" href="#" data-page-num="3">3</a></li>
+      <li class="page-item next"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
 
   <footer class="contact-footer">
     <h2> Premium jewellery visuals for your Socials.</h2>
@@ -1379,6 +1505,9 @@ Send this to me as soon as possible.
       // Open Lightbox (Unchanged)
       gridItems.forEach(item => {
         item.addEventListener('click', () => {
+          // SCRIPT MODIFICATION: Check if item is hidden by pagination
+          if (item.classList.contains('page-hidden')) return;
+          
           const imgElement = item.querySelector('img');
           if (imgElement) {
             const imgSrc = imgElement.src;
@@ -1543,6 +1672,88 @@ Send this to me as soon as possible.`;
         });
       }
       // --- SCRIPT MODIFICATION END ---
+      
+
+      // --- SCRIPT ADDITION START: New Logic for Pagination ---
+      const pageLinks = document.querySelectorAll('.pagination .page-link');
+      const allGridItems = document.querySelectorAll('.editorial-grid .grid-item');
+      const nextButton = document.querySelector('.pagination .page-item.next .page-link');
+      const totalPages = 3;
+      let currentPage = 1;
+
+      function showPage(pageNumber) {
+        if (pageNumber === currentPage) return; // Do nothing if clicking active page
+        
+        currentPage = pageNumber;
+
+        // 1. Fade out all items
+        allGridItems.forEach(item => {
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.95)';
+        });
+
+        // 2. After fade-out, hide old items and show new items
+        setTimeout(() => {
+          allGridItems.forEach(item => {
+            const itemPage = parseInt(item.dataset.page);
+            if (itemPage === pageNumber) {
+              item.classList.remove('page-hidden');
+              // Force reflow to animate in
+              void item.offsetWidth; 
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            } else {
+              item.classList.add('page-hidden');
+            }
+          });
+        }, 400); // Match this to CSS transition duration
+
+        // 3. Update active state on buttons
+        pageLinks.forEach(link => {
+           if (!link.parentElement.classList.contains('next')) {
+             link.parentElement.classList.remove('active');
+           }
+        });
+        const activeLink = document.querySelector(`.pagination .page-link[data-page-num="${pageNumber}"]`);
+        if (activeLink) {
+          activeLink.parentElement.classList.add('active');
+        }
+      }
+
+      function showNextPage() {
+        let nextPage = currentPage + 1;
+        if (nextPage > totalPages) {
+          nextPage = 1; // Loop back to first page
+        }
+        showPage(nextPage);
+      }
+
+      // Initial setup: Hide pages 2 and 3 on load
+      allGridItems.forEach(item => {
+        const itemPage = parseInt(item.dataset.page);
+        if (itemPage !== 1) {
+          item.classList.add('page-hidden');
+          item.style.opacity = '0'; // Start hidden
+          item.style.transform = 'scale(0.95)';
+        }
+      });
+
+      // Add Event Listeners
+      pageLinks.forEach(link => {
+        if (!link.parentElement.classList.contains('next')) {
+          const pageNum = parseInt(link.dataset.pageNum);
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage(pageNum);
+          });
+        }
+      });
+
+      nextButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        showNextPage();
+      });
+      // --- SCRIPT ADDITION END ---
 
 
       // --- UPDATED Escape key listener (Existing, Unchanged) ---
